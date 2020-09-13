@@ -1,0 +1,98 @@
+# Assignment Day 9
+
+# Question 1
+
+# Write a python Function for finding is a given number prime or not and do Unit Testing on it using
+# PyLint and Unittest Library.
+
+
+
+! pip install pylint
+
+
+! pip install unittest2
+
+! pip install unittest
+
+# pylint 
+
+
+%%writefile check_prime_number.py
+'''
+This is a module to check weather the given number is even or odd.''
+'''
+def prime(num):
+    '''
+    This is the main function which check out the given number is even or odd.
+    '''
+    if num > 1:
+        for i in range(2, num):
+            if (num % i) == 0:
+                break
+            return print("It is a Prime Number")
+    return print("It is not a Prime Number")
+n = int(input("enter the number :"))
+prime(n)
+
+
+! pylint "check_prime_number.py"
+
+
+# Unittest 
+
+
+%%writefile capitalizeText.py
+
+def capText(string_To_Cap):
+    return string_To_Cap.title()
+
+#%%
+
+%%writefile test.py
+'''
+this is the test file in which we are going to check out the py file with the help of unittest
+'''
+import unittest
+
+import capitalizeText
+
+class testPrimeNumber(unittest.TestCase):
+    def testOne(self):
+        result = capitalizeText.capText("anmol noor")
+        self.assertEqual(result,"Anmol Noor") 
+    def testSecond(self):
+        result = capitalizeText.capText("this is a text string to test the unittest on a file")
+        self.assertEqual(result,"This Is A Text String To Test The Unittest On A File")
+        
+if __name__ == "__main__":
+    unittest.main()
+    
+    
+! python test.py    
+#%%
+
+# Question 2
+# Make a small generator program for returning armstrong numbers in between 1-1000 in a
+# generator object.
+
+def armstrong(num):
+    for x in range(1,num):
+        if x>10:
+            order = len(str(x))
+            sum = 0
+
+            temp = x
+            while temp > 0:
+                digit = temp % 10
+                sum += digit ** order
+                temp //= 10
+
+            if x == sum:
+                yield print("The First Armstrong Nubmer is : ", x)
+
+
+lst = list(armstrong(1000))
+
+
+
+#%%
